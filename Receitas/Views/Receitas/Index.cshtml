@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Receitas.Models.Receita>
+
+@{
+    ViewData["Title"] = "Receitas cadastradas";
+}
+
+<div class="pt-5">
+    <p>
+        <a asp-action="NovaReceita" class="btn btn-outline-dark btn-sm">Nova Receita</a>
+    </p>
+
+    <hr />
+
+    <div class="border border-light rounded-lg shadow">
+        <div class="container p-5">
+            @if(Model.Count() > 0)
+            {
+                <div>
+                    <ul class="list-group list-group-flush">
+                        @foreach (var item in Model)
+                        {
+                           <li class="list-group-item @item.ReceitaId">
+                               <div class="row">
+                                   <div class="col-3">
+                                       <img src="@Url.Content(item.Foto)" class="img-thumbnail rounded-lg" height="128" width="128" />
+                                   </div>
+
+                                   <div class="col-3">
+                                       <h5>@Html.DisplayFor(modelItem => item.Nome)</h5>
+                                   </div>
+
+                                   <div class="col-2">
+                                       <h5><span class="badge badge-secondary">R$ @Html.DisplayFor(modelItem => item.Preco)</span> </h5>
+                                   </div>
+
+                                   <div class="col-4">
+                                       <a asp-action="AtualizarReceita" asp-controller="Receitas" asp-route-receitaId="@item.ReceitaId" class="btn btn-primary btn-sm rounded-circle">
+                                           <i class="fa fa-pencil-square-o"></i>
+                                       </a>
+                                       <a asp-action="DetalhesReceita" asp-controller="Receitas" asp-route-receitaId="@item.ReceitaId" class="btn btn-secondary btn-sm rounded-circle">
+                                           <i class="fa fa-tasks"></i>
+                                       </a>
+                                       <a style="color:white; cursor:pointer;" class="btn btn-danger btn-sm rounded-circle" onclick="Excluir(@item.ReceitaId, 'Receitas')">
+                                           <i class="fa fa-times-circle"></i>
+                                       </a>                                      
+                                   </div>
+                               </div>
+                           </li>                                
+                                
+                        }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning">
+                    <span>Sem receitas ainda</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Exclusao.js"></script>
+}

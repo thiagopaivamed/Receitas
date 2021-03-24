@@ -1,0 +1,29 @@
+﻿@model Receitas.Models.Receita
+
+@{
+    ViewData["Title"] = "Detalhes da Receita " + Model.Nome;
+}
+
+<div class="container">
+    <div class="row">
+        <img src="@Url.Content(Model.Foto)" class="img-fluid mx-auto rounded" height="750" width="500" />
+    </div>
+    <br />
+
+    <div class="row">
+        <h2 class="mx-auto">@Model.Nome - @Model.Preco</h2>
+    </div>
+
+    <hr />
+
+    <div>
+        <br />
+        <a asp-controller="Passos" asp-action="NovoPasso" asp-route-receitaId="@Model.ReceitaId" class="btn btn-outline-dark btn-sm">Novo passo</a>
+        <br /> <br />
+        @await Component.InvokeAsync("Passos", Model.ReceitaId)
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/Exclusao.js"></script>
+}

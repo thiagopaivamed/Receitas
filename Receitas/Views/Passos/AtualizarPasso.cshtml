@@ -1,0 +1,32 @@
+﻿@model Receitas.Models.Passo
+
+@{
+    ViewData["Title"] = "Atualizar Passo";
+}
+
+<div class="border border-light rounded-lg p-5 shadow">
+    <h6>Atualizar Passo</h6>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AtualizarPasso">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <input type="hidden" asp-for="PassoId" />
+
+                <div class="form-group">
+                    <label asp-for="Descricao" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="Descricao" class="form-control form-control-sm" />
+                    <span asp-validation-for="Descricao" class="text-danger"></span>
+                </div>
+
+                <input asp-for="ReceitaId" hidden />
+
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-outline-primary btn-sm" />
+                    <a asp-action="Index" class="btn btn-light btn-sm">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

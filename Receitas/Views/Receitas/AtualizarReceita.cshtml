@@ -1,0 +1,38 @@
+﻿@model Receitas.Models.Receita
+
+@{
+    ViewData["Title"] = "Atualizar Receita " + Model.Nome;
+}
+
+<div class="border border-light rounded-lg p-5 shadow">
+    <h6>Atualizar Receita @Model.Nome</h6>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="AtualizarReceita" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <input asp-for="ReceitaId" hidden />
+                <div class="form-group">
+                    <label asp-for="Nome" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="Nome" class="form-control form-control-sm" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Foto" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="Foto" type="file" class="form-control-file form-control-sm" />
+                    <span asp-validation-for="Foto" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Preco" class="col-form-label col-form-label-sm"></label>
+                    <input asp-for="Preco" class="form-control form-control-sm" />
+                    <span asp-validation-for="Preco" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Salvar" class="btn btn-outline-primary btn-sm" />
+                    <a asp-action="Index" class="btn btn-light btn-sm">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
